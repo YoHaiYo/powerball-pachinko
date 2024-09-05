@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO 관련 meta 태그 -->
+    <meta
+      name="description"
+      content="Powerball Pachinko is an exciting tool that uses big data to predict Powerball numbers in a fun pachinko-style animation. Try your luck and see the next winning numbers!"
+    />
+    <meta
+      name="keywords"
+      content="Powerball, lottery, number prediction, big data, pachinko, Powerball predictor, lottery game"
+    />
+    <meta name="author" content="Powerball Pachinko Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (OG) meta 태그 for Social Media -->
+    <meta
+      property="og:title"
+      content="Powerball Pachinko - Predict the Next Powerball Numbers!"
+    />
+    <meta
+      property="og:description"
+      content="Watch as our pachinko-style animation predicts your next Powerball numbers with the power of big data."
+    />
+    <meta
+      property="og:image"
+      content="https://example.com/powerball-pachinko-thumbnail.jpg"
+    />
+    <meta property="og:url" content="https://example.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card meta 태그 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Powerball Pachinko - Big Data Predictions for Powerball"
+    />
+    <meta
+      name="twitter:description"
+      content="Use big data analysis to predict Powerball numbers in a fun and engaging pachinko-style game!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://example.com/powerball-pachinko-thumbnail.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Powerball Pachinko</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #322828;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #fff;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 600px;
+      }
+
+      h1 {
+        color: #ff4500;
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .ball-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+      }
+
+      .ball {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        color: #322828;
+        background-color: #fff;
+        border: 2px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        font-weight: bold;
+        transition: transform 0.5s;
+      }
+
+      .powerball {
+        background-color: #ff4500;
+        color: #fff;
+      }
+
+      .info-text {
+        font-size: 1.2rem;
+        background-color: #444;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .highlight {
+        color: #ff4500;
+        font-weight: bold;
+      }
+
+      button {
+        padding: 15px 30px;
+        font-size: 1.5rem;
+        background-color: #ff4500;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      button:hover {
+        background-color: #e63e00;
+        transform: scale(1.05);
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      button.disabled {
+        background-color: #888;
+        cursor: not-allowed;
+      }
+
+      #countdown {
+        margin-top: 10px;
+        color: #ff4500;
+        font-size: 1.2rem;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: #fff;
+        color: #000;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+      }
+
+      .modal h2 {
+        margin: 0;
+        color: #ff4500;
+      }
+
+      .modal p {
+        margin-top: 10px;
+        font-size: 1.2rem;
+      }
+
+      .close-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #ff4500;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Powerball Pachinko</h1>
+
+      <div class="info-text">
+        Ready to predict the next
+        <span class="highlight">Powerball</span> numbers? Our system uses
+        <span class="highlight">big data analysis</span> to generate the most
+        promising numbers. Click the button below and watch as the Powerball
+        numbers unfold in a fun pachinko-style animation!
+      </div>
+
+      <div class="ball-container">
+        <div class="ball" id="ball1">?</div>
+        <div class="ball" id="ball2">?</div>
+        <div class="ball" id="ball3">?</div>
+        <div class="ball" id="ball4">?</div>
+        <div class="ball" id="ball5">?</div>
+        <div class="ball powerball" id="powerball">?</div>
+      </div>
+
+      <button id="start-btn">Start Prediction!</button>
+      <div id="countdown"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="resultModal" class="modal">
+      <div class="modal-content">
+        <h2>Congratulations!</h2>
+        <p>Your numbers have been successfully predicted. Best of luck!</p>
+        <button class="close-btn" id="closeModalBtn">Close</button>
+      </div>
+    </div>
+
+    <script>
+      const startBtn = document.getElementById("start-btn");
+      const countdownDisplay = document.getElementById("countdown");
+      const modal = document.getElementById("resultModal");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+
+      const balls = [
+        document.getElementById("ball1"),
+        document.getElementById("ball2"),
+        document.getElementById("ball3"),
+        document.getElementById("ball4"),
+        document.getElementById("ball5"),
+        document.getElementById("powerball"),
+      ];
+
+      startBtn.addEventListener("click", () => {
+        let numbers = generatePowerballNumbers();
+        displayNumbersWithAnimation(numbers);
+        startBtn.disabled = true;
+        startBtn.classList.add("disabled");
+        countdown(60); // Start 1-minute countdown
+      });
+
+      function generatePowerballNumbers() {
+        let numbers = [];
+        while (numbers.length < 5) {
+          let randomNum = Math.floor(Math.random() * 69) + 1;
+          if (!numbers.includes(randomNum)) {
+            numbers.push(randomNum);
+          }
+        }
+        let powerball = Math.floor(Math.random() * 26) + 1;
+        numbers.push(powerball); // Powerball number at the end
+        return numbers;
+      }
+
+      function displayNumbersWithAnimation(numbers) {
+        let index = 0;
+
+        const interval = setInterval(() => {
+          if (index < balls.length) {
+            let currentBall = balls[index];
+            let count = 0;
+            const spinInterval = setInterval(() => {
+              if (count < 10) {
+                currentBall.innerHTML =
+                  Math.floor(Math.random() * (index === 5 ? 26 : 69)) + 1;
+                count++;
+              } else {
+                clearInterval(spinInterval);
+                currentBall.innerHTML = numbers[index]; // Set final number
+                index++;
+              }
+            }, 100); // Spins numbers every 100ms
+          } else {
+            clearInterval(interval);
+            // Show modal with congratulations message after all numbers are revealed
+            setTimeout(() => {
+              modal.style.display = "flex";
+            }, 1000);
+          }
+        }, 1500); // 1.5 seconds delay between each ball reveal
+      }
+
+      // Close modal
+      closeModalBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      // Countdown function
+      function countdown(seconds) {
+        let timeLeft = seconds;
+
+        const countdownInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            countdownDisplay.innerHTML = `You can predict again in ${timeLeft} seconds...`;
+            timeLeft--;
+          } else {
+            clearInterval(countdownInterval);
+            countdownDisplay.innerHTML = "";
+            startBtn.disabled = false;
+            startBtn.classList.remove("disabled");
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
